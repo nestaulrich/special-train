@@ -1,0 +1,64 @@
+*/ {outline: 1px solid lightgrey;
+}
+
+@import url('https://fonts.googleapis.com/css?family=Raleway:200,400,700');
+
+h1 {
+  font-family: Raleway, sans-serif;
+  font-weight:700;}
+h2 {
+  font-family: Raleway, sans-serif;
+  font-weight:200;
+}
+h3 {
+  font-family: Raleway, sans-serif;
+  font-weight:400;
+}
+h4 {
+  font-family: Raleway, sans-serif;
+  font-weight:400;
+}
+p {
+  font-family: Raleway, sans-serif;
+  font-weight:200;
+}
+
+
+
+
+html { 
+  background: url(/img/space.jpg) no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+body {
+  text-align:center;
+  padding-top:70px;
+  min-width: 400px;
+  color:snow;
+}
+.content {
+  
+}
+.container {
+  padding:5px;
+  margin:0 auto;
+  width:400px;
+  background:rgba(100, 0, 0, 0.6);
+  border: 2px solid rgb(100, 0, 0);
+}
+
+#twitter {
+  text-decoration:none;
+  color:black;
+}
+
+.button {
+  background:red;
+}
+
+
+
