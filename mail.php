@@ -1,12 +1,19 @@
 <?php
+
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
-        # FIX: Replace this email with recipient email
-        $mail_to = "greg@24data.com";
-        
-        # secret key variable
-        $secretKey = "6LeR7JcUAAAAAM2UR0qbJMSntDZNPHNXSZKppzEE";
+        // access
+        $secretKey = '6LeR7JcUAAAAAM2UR0qbJMSntDZNPHNXSZKppzEE';
+        $captcha = $_POST['g-recaptcha-response'];
 
+        if(!$captcha){
+          echo '<p class="alert alert-warning">Please check the the captcha form.</p>';
+          exit;
+        }
+
+        # FIX: Replace this email with recipient email
+        $mail_to = "greg.ulrich@me.com";
+        
         # Sender Data
         $subject = trim($_POST["subject"]);
         $name = str_replace(array("\r","\n"),array(" "," ") , strip_tags(trim($_POST["name"])));
@@ -17,34 +24,43 @@
         if ( empty($name) OR !filter_var($email, FILTER_VALIDATE_EMAIL) OR empty($phone) OR empty($subject) OR empty($message)) {
             # Set a 400 (bad request) response code and exit.
             http_response_code(400);
-            echo "Please complete the form and try again.";
+            echo '<p class="alert alert-warning">Please complete the form and try again.</p>';
             exit;
         }
-        
-        # Mail Content
-        $content = "Name: $name\n";
-        $content .= "Email: $email\n\n";
-        $content .= "Phone: $phone\n";
-        $content .= "Message:\n$message\n";
 
-        # email headers.
-        $headers = "From: $name &lt;$email&gt;";
+        $ip = $_SERVER['REMOTE_ADDR'];
+        $response=file_get_contents("https://www.google.com/recaptcha/api/siteverify?secret=".$secretKey."&response=".$captcha."&remoteip=".$ip);
+        $responseKeys = json_decode($response,true);
 
-        # Send the email.
-        $success = mail($mail_to, $subject, $content, $headers);
-        if ($success) {
-            # Set a 200 (okay) response code.
-            http_response_code(200);
-            echo "Thank You! Your message has been sent.";
+        if(intval($responseKeys["success"]) !== 1) {
+          echo '<p class="alert alert-warning">Please check the the captcha form.</p>';
         } else {
-            # Set a 500 (internal server error) response code.
-            http_response_code(500);
-            echo "Oops! Something went wrong, we couldn't send your message.";
+            # Mail Content
+            $content = "Name: $name\n";
+            $content .= "Email: $email\n\n";
+            $content .= "Phone: $phone\n";
+            $content .= "Message:\n$message\n";
+
+            # email headers.
+            $headers = "From: $name <$email>";
+
+            # Send the email.
+            $success = mail($mail_to, $subject, $content, $headers);
+            if ($success) {
+                # Set a 200 (okay) response code.
+                http_response_code(200);
+                echo '<p class="alert alert-success">Thank You! Your message has been sent.</p>';
+            } else {
+                # Set a 500 (internal server error) response code.
+                http_response_code(500);
+                echo '<p class="alert alert-warning">Oops! Something went wrong, we couldnt send your message.</p>';
+            }
         }
 
-        } else {
-            # Not a POST request, set a 403 (forbidden) response code.
-            http_response_code(403);
-            echo "There was a problem with your submission, please try again.";
-        }
+    } else {
+        # Not a POST request, set a 403 (forbidden) response code.
+        http_response_code(403);
+        echo '<p class="alert alert-warning">There was a problem with your submission, please try again.</p>';
+    }
+
 ?>

@@ -14,6 +14,8 @@
 
   <link href="/css/style.css" rel="stylesheet" type="text/css">
 
+  <script src='https://www.google.com/recaptcha/api.js'></script>
+
 
 </head>
 
@@ -150,10 +152,53 @@
       <h3>CONTACT</h3>
       <form>
         <div class="form-group">
-          <label for="exampleInputEmail1"><a href="mailto:greg.ulrich@me.com?subject=Website Inquiry">greg.ulrich@me.com</a></label>
+          <div class="row">
+            <div class="col-md-3"></div>
+            <div class="col-md-6">
+              <form class="contact__form" method="post" action="old-mail.php">
+                  
+                  <!-- form message -->
+                  <div class="row">
+                      <div class="col-12">
+                          <div class="contact__msg" style="display: none">
+                              <p>Your message was sent successfully.</p>
+                          </div>
+                      </div>
+                  </div>
+                  <!-- end message -->
+
+                  <!-- form element -->
+                  <div class="row">
+                      <div class="col-sm-6 form-group">
+                          <input name="name" type="text" class="form-control" placeholder="Name" required>
+                      </div>
+                      <div class="col-sm-6 form-group">
+                          <input name="email" type="email" class="form-control" placeholder="Email" required>
+                      </div>
+                      <!-- <div class="col-md-6 form-group">
+                          <input name="phone" type="text" class="form-control" placeholder="Phone" required>
+                      </div>
+                      <div class="col-md-6 form-group">
+                          <input name="subject" type="text" class="form-control" placeholder="Subject" required>
+                      </div> -->
+                      <div class="col-12 form-group">
+                          <textarea name="message" class="form-control" rows="3" placeholder="Message" required></textarea>
+                      </div>
+                      <div class="col-12 form-group">
+                          <div data-theme="dark" class="g-recaptcha" data-sitekey="6LeR7JcUAAAAAIxVIDG9wk-YwTkhB_fVNvuUEt-v"></div>
+                      </div>
+                      <div class="col-12">
+                          <input name="submit" type="submit" class="btn btn-success" value="Send Message">
+                      </div>
+                  </div>
+                  <!-- end form element -->
+              </form>
+          </div>
+          <div class="col-md-3"></div>
+          </div>
         </div>
-        <div class="form-group">
-          <label for="enterText">310.738.3353</label>
+        <div id="tel">
+          <p>310.738.3353</p>
         </div>
       </form>
     </div>
@@ -172,7 +217,7 @@
   </div>
   <script src='https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
   <script src='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta/js/bootstrap.min.js'></script>
-
+  <script src="/playground/main.js"></script>
 </body>
 
 </html>
