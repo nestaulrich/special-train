@@ -1,9 +1,11 @@
 <?php
-$name = $_POST['name'];
+$firstname = $_POST['firstname'];
+$lastname = $_POST['lastname'];
+$zip = $_POST['zip'];
+$phone = $_POST['phone'];
 $email = $_POST['email'];
-$message = $_POST['message'];
 
-$formcontent=" From: $name \n Email: $email";
+$formcontent=" From: $firstname $lastname \n Zipcode: $zip \n Phone: $phone \n Email: $email";
 $recipient = "greg.ulrich@me.com";
 $subject = "Contact Form";
 $mailheader = "From: $email \r\n";
