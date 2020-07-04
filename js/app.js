@@ -1,28 +1,28 @@
-document.querySelector('#add-info').addEventListener('submit', formValidation);
+document.querySelector('#info').addEventListener('submit', formValidation);
 
 
 //Validate form data function declaration
 function formValidation() {
 
     //Form fields variable declarations
-    const name  = document.getElementById('ame');
-    const email  = document.getElementById('email');
-    const message  = document.getElementById('message');
-    const checkBox = document.getElementById('check-box');
-    const checkDiv = document.getElementById('check-div');
-    const success = document.getElementById('success');
+    const name  = document.getElementById('ame'),
+            email  = document.getElementById('email'),
+            message  = document.getElementById('message'),
+            checkBox = document.getElementById('check-box'),
+            checkDiv = document.getElementById('check-div'),
+            success = document.getElementById('success');
 
     //Error divs
-    const errorName  = document.getElementById('error-name');
-    const errorEmail  = document.getElementById('error-email');
-    const errorMessage  = document.getElementById('error-message');
-    const errorCheck  = document.getElementById('error-check');
+    const errorName  = document.getElementById('error-name'),
+            errorEmail  = document.getElementById('error-email'),
+            errorMessage  = document.getElementById('error-message'),
+            errorCheck  = document.getElementById('error-check');
 
     let errors = true;
 
     //RegEx variable declarations
-    const nameRGEX = /^[A-Z a-z\s'.-]{1,20}$/;
-    const emailRGEX = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    const nameRGEX = /^[A-Z a-z\s'.-]{1,20}$/,
+   emailRGEX = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
     //Validate First Name
     let nameResult = nameRGEX.test(name.value);
