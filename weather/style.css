@@ -38,17 +38,44 @@
     background: none;
     text-align: center;
     padding-top: 70px;
-    min-width: 400px;
+    min-width: 250px;
     color: snow;
   }
-  .content {
-  }
+
   .container {
     padding: 5px;
     margin: 0 auto;
-    width: 400px;
+   min-width: 250px;
+   max-width: 400px;
     background: rgba(0, 0, 0, 0.6);
     border: 2px solid rgb(100, 100, 100);
+  }
+
+  .col-12 {
+    text-align: center;
+  }
+  .col-12>label {
+    display: block;
+    font-family: "Work Sans", Arial, Helvetica, sans-serif;
+  }
+  .col-12>input,
+  .col-12>button {
+    display: inline;
+    margin: 0 auto;
+  }
+  .col-12>button {
+    border: 1px solid rgb(1, 129, 233);
+    padding: 5px 15px;
+    background-color: rgba(1, 129, 233, 0.8);
+    border-radius: 5px;
+    margin-top: .5em;
+  }
+  .col-12>input {
+    border: 1px solid rgb(255,255,255);
+    padding: 5px 15px;
+    background-color: rgba(255,255,255, 0.8);
+    border-radius: 5px;
+    margin-top: .5em;
   }
   
   #temp:hover {

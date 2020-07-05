@@ -6,24 +6,39 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <link rel="shortcut icon" href="favicon.ico">
         <title></title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="./style.css?newcache02">
+        <link rel="stylesheet" href="./style.css?newcache04">
     </head>
     <body>
         <!--[if lt IE 7]>
             <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
-        <div class=container>
-            <h1 id="loc"></h1>
+        <div id="weather-container" class=container>
+            <div class="row">
+              <div class="col-12">
+                <label for="zip">Enter your location</label>
+                <input id="zip" name="zip" type="text">
+                <button id="submit-btn"class="btn btn-info">Submit</button>
+              </div>
+            </div>
+            <h1>
+              <span id="loc6"></span>
+              <span id="loc5"></span>
+              <span id="loc4"></span>
+              <span id="loc3"></span>
+              <span id="loc2"></span>
+              <span id="loc1"></span>
+            </h1>
             <p id="coord"></p>
             <h3>Current Conditions</h3>
             <hr>
             
           
           <!-- Weather Info-->
-            <p>Click to change from imperial to metric format</p>
+            <p style="display:none">Click to change from imperial to metric format</p>
             <div id = "weatherData">
               <div id = "weatherIcon">
                 <canvas id="icon" width="128" height="128"></canvas>
@@ -43,6 +58,6 @@
           crossorigin="anonymous"></script>
         <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> -->
         <script src="https://rawgithub.com/darkskyapp/skycons/master/skycons.js"></script>
-        <script src="app.js?newcache02" async defer></script>
+        <script src="app.js?newcache04" async defer></script>
     </body>
 </html>

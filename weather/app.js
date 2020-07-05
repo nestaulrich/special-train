@@ -1,20 +1,31 @@
 //Geolocation
 
 
+$('#submit-btn').click( ()=> getPosition() );
 
+  function getPosition() {
+    let zip = $('#zip').val(),
+    key="0RPiShisa4GGeZNcC8OauGReCnjSsysi"
+    zipApi=`https://open.mapquestapi.com/geocoding/v1/address?key=${key}&location=${zip}&thumbMaps=false&outFormat=json`;
+    // console.log(zipApi);
+    $.get(zipApi, (data) => {
+      const info = data.results[0].locations[0];
+      // console.log(JSON.stringify(info))
+      if(info == null) {
+        $('#weather-container').html(`<h1>Try again mate..</h1>`);
+        return false;
 
-if (navigator.geolocation) {
-  console.log("geo")
-  navigator.geolocation.getCurrentPosition(getPosition);
+      }else {
+        // console.log(info.adminArea1)
+        info.adminArea6 !== "" && info.adminArea6 !== undefined && info.adminArea6 !== null ?  $('#loc6').html(`${info.adminArea6} `) : $('#loc6').text(""); 
+        info.adminArea5 !== "" && info.adminArea5 !== undefined && info.adminArea5 !== null ?  $('#loc5').html(`${info.adminArea5} `) : $('#loc5').text("");
+        info.adminArea4 !== "" && info.adminArea4 !== undefined && info.adminArea4 !== null ?  $('#loc4').html(`${info.adminArea4} `) : $('#loc4').text("");
+        info.adminArea3 !== "" && info.adminArea3 !== undefined && info.adminArea3 !== null ?  $('#loc3').html(`${info.adminArea3} `) : $('#loc3').text("");
+        info.adminArea1 !== "" && info.adminArea1 !== undefined && info.adminArea1 !== null ?  $('#loc1').html(`${info.adminArea1} `) : $('#loc1').text("");
 
-  } else {
-    $("#coord").text("Geolocation is not supported by this browser.");
-  }
-
-  function getPosition(position) {
-    console.log("inside getPosition")
-    var lat = position.coords.latitude;
-    var lon = position.coords.longitude;
+        // console.log("inside getPosition")
+    var lat = info.latLng.lat;
+    var lon = info.latLng.lng;
   
     $("#coord").html("lat: " + lat.toFixed(2) + " | lon: " + lon.toFixed(2));
   
@@ -24,14 +35,14 @@ if (navigator.geolocation) {
       "&lon=" +
       lon +
       "&appid=b177b37ff422e147c302ba4b75a1482e";
-    console.log(api)
+    // console.log(api)
     $.get(api, function(data) {
       var kelvin = data.main.temp;
       var city = data.name;
       var wind = data.wind.speed;
-      console.log( "dir = " + dir );
       var windImperial = (data.wind.speed * 2.23).toFixed(1);
       var dir = Math.round(data.wind.deg);
+      // console.log( "dir = " + dir );
       var hum = data.main.humidity;
       var fahrenheit = Math.round(data.main.temp * (9 / 5) - 459.67);
       var celsius = kelvin - 273.15 + "&#8451;";
@@ -98,7 +109,7 @@ if (navigator.geolocation) {
       
      var windDirection = getWindDirection( dir );
       
-     // console.log( windDirection );
+   
       
       // Function to translate cloud cover percentage to string
       function getViz(clouds) {
@@ -190,5 +201,14 @@ if (navigator.geolocation) {
         if (data) changeWindScale($(this));
       });
     });
-    }
+
+
+
+      }
+
+    }).fail(data => {
+      console.log("Fail" + JSON.stringify(data.info.statuscode))
+    })
+    
+}
   
